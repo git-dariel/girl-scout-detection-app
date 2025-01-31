@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 import { DetectionResult } from "../components/DetectionResult";
 import { ImageUpload } from "../components/ImageUpload";
 import { detectUniform } from "../services/imageDetectionService";
@@ -88,7 +88,7 @@ export const Home = () => {
                     <span className="inline-block bg-gradient-to-r from-green-400 to-emerald-400 text-transparent bg-clip-text pb-2">
                       Smart Scout
                     </span>
-                    <br />
+                    {` `}
                     <span className="inline-block text-white/90">AI Detector</span>
                   </h1>
                 </div>

@@ -12,7 +12,7 @@ function App() {
       </Routes>
 
       {/* Sonner Toast Container */}
-      <Toaster position="top-center" expand={true} richColors theme="dark" />
+      <Toaster position="bottom-right" expand={true} richColors theme="dark" />
     </BrowserRouter>
   );
 }

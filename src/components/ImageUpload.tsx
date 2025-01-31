@@ -1,12 +1,31 @@
 import { ChangeEvent, DragEvent, useState } from "react";
+import { toast } from "sonner";
 
 interface ImageUploadProps {
   onImageSelect: (file: File) => void;
   isLoading?: boolean;
 }
 
+const MAX_FILE_SIZE = 1024 * 1024; // 1MB in bytes
+
 export const ImageUpload = ({ onImageSelect, isLoading = false }: ImageUploadProps) => {
   const [isDragging, setIsDragging] = useState(false);
+
+  const validateFile = (file: File): boolean => {
+    // Check file size
+    if (file.size > MAX_FILE_SIZE) {
+      toast.error("File size exceeds 1MB limit. Please choose a smaller file.");
+      return false;
+    }
+
+    // Check if it's an image
+    if (!file.type.startsWith("image/")) {
+      toast.error("Please upload an image file (JPEG, PNG).");
+      return false;
+    }
+
+    return true;
+  };
 
   const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -23,14 +42,20 @@ export const ImageUpload = ({ onImageSelect, isLoading = false }: ImageUploadPro
     setIsDragging(false);
 
     const files = e.dataTransfer.files;
-    if (files.length > 0 && files[0].type.startsWith("image/")) {
-      onImageSelect(files[0]);
+    if (files.length > 0) {
+      const file = files[0];
+      if (validateFile(file)) {
+        onImageSelect(file);
+      }
     }
   };
 
   const handleFileInput = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.length) {
-      onImageSelect(e.target.files[0]);
+      const file = e.target.files[0];
+      if (validateFile(file)) {
+        onImageSelect(file);
+      }
     }
   };
 
@@ -137,7 +162,7 @@ export const ImageUpload = ({ onImageSelect, isLoading = false }: ImageUploadPro
                 </div>
               </label>
 
-              <p className="text-xs text-white/40">Supported formats: JPEG, PNG</p>
+              <p className="text-xs text-white/40">Supported formats: JPEG, PNG (Max size: 1MB)</p>
             </div>
 
             {/* Loading indicator */}

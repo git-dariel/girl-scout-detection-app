@@ -34,18 +34,6 @@ export const DetectionResult = ({
               {/* Results overlay - only show when not scanning */}
               {!isScanning && (
                 <>
-                  {/* Status Label */}
-                  {/* <div className="absolute top-4 left-4 text-2xl font-bold">
-                    <span className={result.is_authentic ? "text-green-500" : "text-red-500"}>
-                      {result.is_authentic ? "Authentic Uniform" : "Fake Uniform"}
-                    </span>
-                  </div> */}
-                  {/* Confidence Score Label */}
-                  {/* <div className="absolute top-14 left-4 text-4xl font-bold">
-                    <span className={result.is_authentic ? "text-green-500" : "text-red-500"}>
-                      {result.confidence_score.toFixed(1)}%
-                    </span>
-                  </div> */}
                   <div className="absolute top-4 right-4">
                     <div
                       className={`px-4 py-2 rounded-lg text-sm font-medium 
