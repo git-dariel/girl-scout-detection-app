@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { toast, Toaster } from "sonner";
+import { toast } from "sonner";
 import { DetectionResult } from "../components/DetectionResult";
 import { ImageUpload } from "../components/ImageUpload";
 import { detectUniform } from "../services/imageDetectionService";
