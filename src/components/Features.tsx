@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export const Features = () => {
+  const shouldReduceMotion = useReducedMotion();
   const features = [
     {
       title: "Advanced AI Detection",
@@ -65,18 +66,18 @@ export const Features = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: shouldReduceMotion ? 0 : 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 10 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.3,
       },
     },
   };
@@ -87,10 +88,15 @@ export const Features = () => {
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-50px" }}
         variants={containerVariants}
+        style={{ willChange: "opacity" }}
       >
-        <motion.div className="text-center mb-16" variants={itemVariants}>
+        <motion.div
+          className="text-center mb-16"
+          variants={itemVariants}
+          style={{ willChange: "opacity, transform" }}
+        >
           <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 text-transparent bg-clip-text mb-4">
             Powerful Features
           </h2>
@@ -105,7 +111,8 @@ export const Features = () => {
               key={feature.title}
               className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10"
               variants={itemVariants}
-              whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+              style={{ willChange: "opacity, transform" }}
+              whileHover={shouldReduceMotion ? {} : { scale: 1.02, transition: { duration: 0.2 } }}
             >
               <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg p-2 mb-4">
                 <div className="text-white">{feature.icon}</div>
