@@ -100,7 +100,7 @@ export const Features = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
+          {features.map((feature) => (
             <motion.div
               key={feature.title}
               className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10"
