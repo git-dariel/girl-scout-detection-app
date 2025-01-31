@@ -62,20 +62,8 @@ export const Home = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white overflow-hidden">
-      {/* Modern gradient background */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-emerald-500/5 to-green-500/10 animate-gradient" />
-        <div className="absolute inset-0 backdrop-blur-3xl">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,0,0.1),transparent_50%)]" />
-        </div>
-      </div>
-
-      {/* Animated background elements */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-green-500/10 rounded-full mix-blend-overlay filter blur-3xl animate-blob" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full mix-blend-overlay filter blur-3xl animate-blob animation-delay-2000" />
-        <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-green-500/10 rounded-full mix-blend-overlay filter blur-3xl animate-blob animation-delay-4000" />
-      </div>
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-emerald-500/5 to-green-500/10" />
 
       {/* Main content */}
       <div className="relative z-10 min-h-screen">
