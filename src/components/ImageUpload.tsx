@@ -178,7 +178,22 @@ export const ImageUpload = ({ onImageSelect, isLoading = false }: ImageUploadPro
                 </div>
               </label>
 
-              <p className="text-xs text-white/40">Supported formats: JPEG, PNG (Max size: 1MB)</p>
+              <div className="space-y-1 text-center">
+                <p className="text-xs text-white/40">
+                  Supported formats: JPEG, PNG (Max size: 1MB)
+                </p>
+                <p className="text-xs text-white/40">
+                  Need to compress your image?{" "}
+                  <a
+                    href="https://image.pi7.org/compress-image-to-50kb"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-green-400 hover:text-green-300 underline"
+                  >
+                    Use this tool
+                  </a>
+                </p>
+              </div>
             </div>
 
             {/* Loading indicator */}
