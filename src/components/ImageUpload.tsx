@@ -14,7 +14,23 @@ export const ImageUpload = ({ onImageSelect, isLoading = false }: ImageUploadPro
   const validateFile = (file: File): boolean => {
     // Check file size
     if (file.size > MAX_FILE_SIZE) {
-      toast.error("File size exceeds 1MB limit. Please choose a smaller file.");
+      toast.error(
+        <div className="space-y-2">
+          <p>File size exceeds 1MB limit.</p>
+          <p className="text-sm">
+            Please compress your image using{" "}
+            <a
+              href="https://image.pi7.org/compress-image-to-50kb"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-green-400 hover:text-green-300 underline"
+            >
+              this tool
+            </a>{" "}
+            and try again.
+          </p>
+        </div>
+      );
       return false;
     }
 
