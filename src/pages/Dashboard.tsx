@@ -58,7 +58,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await getAllDetectedUniforms();
+        const response = await getAllDetectedUniforms({ per_page: 1000000 });
         const uniforms = response.uniforms || [];
 
         // Calculate statistics from uniforms data
