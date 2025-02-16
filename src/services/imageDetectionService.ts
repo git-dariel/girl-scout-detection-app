@@ -8,8 +8,8 @@ interface FilterParams {
   end_date?: string;
 }
 
-const LOCAL_API_URL = "http://127.0.0.1:5000";
-// const PRODUCTION_API_URL = "https://girl-scout-detection-api.onrender.com";
+// const LOCAL_API_URL = "http://127.0.0.1:5000";
+const PRODUCTION_API_URL = "https://girl-scout-detection-api.onrender.com";
 
 export const detectUniform = async (image: File): Promise<any> => {
   try {
@@ -18,7 +18,7 @@ export const detectUniform = async (image: File): Promise<any> => {
 
     const response = await fetch(
       // "https://girl-scout-detection-api.onrender.com/api/detect-uniform",
-      `${LOCAL_API_URL}/api/detect-uniform`,
+      `${PRODUCTION_API_URL}/api/detect-uniform`,
       {
         method: "POST",
         body: formData,
@@ -47,7 +47,7 @@ export const getAllDetectedUniforms = async (filters: FilterParams = {}): Promis
 
     const response = await fetch(
       // `https://girl-scout-detection-api.onrender.com/api/get/all/detected-uniforms?${params}`,
-      `${LOCAL_API_URL}/api/get/all/detected-uniforms?${params}`,
+      `${PRODUCTION_API_URL}/api/get/all/detected-uniforms?${params}`,
       {
         method: "GET",
       }
@@ -68,7 +68,7 @@ export const getDetectedUniform = async (uniformId: string): Promise<any> => {
   try {
     const response = await fetch(
       // `https://girl-scout-detection-api.onrender.com/api/get/detected-uniforms/${uniformId}`,
-      `${LOCAL_API_URL}/api/get/detected-uniforms/${uniformId}`,
+      `${PRODUCTION_API_URL}/api/get/detected-uniforms/${uniformId}`,
       {
         method: "GET",
       }
@@ -89,7 +89,7 @@ export const updateDetectedUniform = async (uniformId: string, updates: any): Pr
   try {
     const response = await fetch(
       // `https://girl-scout-detection-api.onrender.com/api/update/detected-uniforms/${uniformId}`,
-      `${LOCAL_API_URL}/api/update/detected-uniforms/${uniformId}`,
+      `${PRODUCTION_API_URL}/api/update/detected-uniforms/${uniformId}`,
       {
         method: "PUT",
         headers: {
@@ -114,7 +114,7 @@ export const deleteDetectedUniform = async (uniformId: string): Promise<any> => 
   try {
     const response = await fetch(
       // `https://girl-scout-detection-api.onrender.com/api/delete/detected-uniforms/${uniformId}`,
-      `${LOCAL_API_URL}/api/delete/detected-uniforms/${uniformId}`,
+      `${PRODUCTION_API_URL}/api/delete/detected-uniforms/${uniformId}`,
       {
         method: "DELETE",
       }
@@ -135,7 +135,7 @@ export const getDetectionStatistics = async (): Promise<any> => {
   try {
     const response = await fetch(
       // "https://girl-scout-detection-api.onrender.com/api/get/detected-uniforms/statistics",
-      `${LOCAL_API_URL}/api/get/detected-uniforms/statistics`,
+      `${PRODUCTION_API_URL}/api/get/detected-uniforms/statistics`,
       {
         method: "GET",
       }
@@ -156,7 +156,7 @@ export const getProcessedImage = async (imageId: string): Promise<any> => {
   try {
     const response = await fetch(
       // `https://girl-scout-detection-api.onrender.com/api/get/processed-image/${imageId}`,
-      `${LOCAL_API_URL}/api/get/processed-image/${imageId}`,
+      `${PRODUCTION_API_URL}/api/get/processed-image/${imageId}`,
       {
         method: "GET",
       }
