@@ -104,13 +104,13 @@ export const Home = () => {
               ) : null}
             </div>
 
-            {!selectedImage && (
+            {/* {!selectedImage && (
               <div className="mt-16 text-center">
                 <p className="text-sm text-gray-500">
                   Powered by advanced AI technology for accurate uniform detection
                 </p>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
