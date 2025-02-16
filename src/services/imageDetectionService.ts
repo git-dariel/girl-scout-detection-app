@@ -9,7 +9,7 @@ interface FilterParams {
 }
 
 // const LOCAL_API_URL = "http://127.0.0.1:5000";
-const PRODUCTION_API_URL = "https://girl-scout-detection-api.onrender.com";
+const PRODUCTION_API_URL = "https://smart-dev-5d12606a1e9c.herokuapp.com";
 
 export const detectUniform = async (image: File): Promise<any> => {
   try {
