@@ -132,7 +132,7 @@ const Dashboard = () => {
                 ? (stats.authentic_uniforms / stats.total_detections) * 100
                 : 0
             }
-            label="Authentic Uniforms"
+            label="Authentic"
             count={stats?.authentic_uniforms || 0}
           />
         </div>
