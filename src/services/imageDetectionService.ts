@@ -18,8 +18,6 @@ const API_URL =
     ? LOCAL_API_URL
     : "https://smart-dev-e7f2abec9106.herokuapp.com";
 
-console.log("Using API URL:", API_URL);
-
 export const detectUniform = async (image: File): Promise<any> => {
   try {
     const formData = new FormData();
