@@ -8,21 +8,31 @@ interface FilterParams {
   end_date?: string;
 }
 
-// const LOCAL_API_URL = "http://127.0.0.1:5000";
-const PRODUCTION_API_URL = "https://smart-dev-e7f2abec9106.herokuapp.com";
+// Determine environment and use appropriate API URL
+const LOCAL_API_URL = "http://127.0.0.1:5000";
+// const PRODUCTION_API_URL = "https://smart-dev-e7f2abec9106.herokuapp.com";
+
+// Dynamic API URL based on environment
+const API_URL =
+  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? LOCAL_API_URL
+    : "https://smart-dev-e7f2abec9106.herokuapp.com";
+
+console.log("Using API URL:", API_URL);
 
 export const detectUniform = async (image: File): Promise<any> => {
   try {
     const formData = new FormData();
     formData.append("file", image);
 
-    const response = await fetch(`${PRODUCTION_API_URL}/api/detect-uniform`, {
+    const response = await fetch(`${API_URL}/api/detect-uniform`, {
       method: "POST",
+      credentials: "include",
       body: formData,
     });
 
     if (!response.ok) {
-      throw new Error("Failed to detect uniform");
+      throw new Error(`Failed to detect uniform: ${response.status} ${response.statusText}`);
     }
 
     return await response.json();
@@ -43,14 +53,18 @@ export const getAllDetectedUniforms = async (filters: FilterParams = {}): Promis
 
     const response = await fetch(
       // `https://girl-scout-detection-api.onrender.com/api/get/all/detected-uniforms?${params}`,
-      `${PRODUCTION_API_URL}/api/get/all/detected-uniforms?${params}`,
+      `${API_URL}/api/get/all/detected-uniforms?${params}`,
       {
         method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+        },
       }
     );
 
     if (!response.ok) {
-      throw new Error("Failed to get detected uniforms");
+      throw new Error(`Failed to get detected uniforms: ${response.status} ${response.statusText}`);
     }
 
     return await response.json();
@@ -64,14 +78,18 @@ export const getDetectedUniform = async (uniformId: string): Promise<any> => {
   try {
     const response = await fetch(
       // `https://girl-scout-detection-api.onrender.com/api/get/detected-uniforms/${uniformId}`,
-      `${PRODUCTION_API_URL}/api/get/detected-uniforms/${uniformId}`,
+      `${API_URL}/api/get/detected-uniforms/${uniformId}`,
       {
         method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+        },
       }
     );
 
     if (!response.ok) {
-      throw new Error("Failed to get detected uniform");
+      throw new Error(`Failed to get detected uniform: ${response.status} ${response.statusText}`);
     }
 
     return await response.json();
@@ -85,18 +103,22 @@ export const updateDetectedUniform = async (uniformId: string, updates: any): Pr
   try {
     const response = await fetch(
       // `https://girl-scout-detection-api.onrender.com/api/update/detected-uniforms/${uniformId}`,
-      `${PRODUCTION_API_URL}/api/update/detected-uniforms/${uniformId}`,
+      `${API_URL}/api/update/detected-uniforms/${uniformId}`,
       {
         method: "PUT",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify(updates),
       }
     );
 
     if (!response.ok) {
-      throw new Error("Failed to update detected uniform");
+      throw new Error(
+        `Failed to update detected uniform: ${response.status} ${response.statusText}`
+      );
     }
 
     return await response.json();
@@ -110,14 +132,20 @@ export const deleteDetectedUniform = async (uniformId: string): Promise<any> => 
   try {
     const response = await fetch(
       // `https://girl-scout-detection-api.onrender.com/api/delete/detected-uniforms/${uniformId}`,
-      `${PRODUCTION_API_URL}/api/delete/detected-uniforms/${uniformId}`,
+      `${API_URL}/api/delete/detected-uniforms/${uniformId}`,
       {
         method: "DELETE",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+        },
       }
     );
 
     if (!response.ok) {
-      throw new Error("Failed to delete detected uniform");
+      throw new Error(
+        `Failed to delete detected uniform: ${response.status} ${response.statusText}`
+      );
     }
 
     return await response.json();
@@ -131,14 +159,20 @@ export const getDetectionStatistics = async (): Promise<any> => {
   try {
     const response = await fetch(
       // "https://girl-scout-detection-api.onrender.com/api/get/detected-uniforms/statistics",
-      `${PRODUCTION_API_URL}/api/get/detected-uniforms/statistics`,
+      `${API_URL}/api/get/detected-uniforms/statistics`,
       {
         method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+        },
       }
     );
 
     if (!response.ok) {
-      throw new Error("Failed to get detection statistics");
+      throw new Error(
+        `Failed to get detection statistics: ${response.status} ${response.statusText}`
+      );
     }
 
     return await response.json();
@@ -152,14 +186,18 @@ export const getProcessedImage = async (imageId: string): Promise<any> => {
   try {
     const response = await fetch(
       // `https://girl-scout-detection-api.onrender.com/api/get/processed-image/${imageId}`,
-      `${PRODUCTION_API_URL}/api/get/processed-image/${imageId}`,
+      `${API_URL}/api/get/processed-image/${imageId}`,
       {
         method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+        },
       }
     );
 
     if (!response.ok) {
-      throw new Error("Failed to get processed image");
+      throw new Error(`Failed to get processed image: ${response.status} ${response.statusText}`);
     }
 
     return await response.json();
