@@ -9,21 +9,17 @@ interface FilterParams {
 }
 
 // const LOCAL_API_URL = "http://127.0.0.1:5000";
-const PRODUCTION_API_URL = "https://smart-dev-5d12606a1e9c.herokuapp.com";
+const PRODUCTION_API_URL = "https://smart-dev-e7f2abec9106.herokuapp.com";
 
 export const detectUniform = async (image: File): Promise<any> => {
   try {
     const formData = new FormData();
     formData.append("file", image);
 
-    const response = await fetch(
-      // "https://girl-scout-detection-api.onrender.com/api/detect-uniform",
-      `${PRODUCTION_API_URL}/api/detect-uniform`,
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
+    const response = await fetch(`${PRODUCTION_API_URL}/api/detect-uniform`, {
+      method: "POST",
+      body: formData,
+    });
 
     if (!response.ok) {
       throw new Error("Failed to detect uniform");
